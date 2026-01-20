@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/lights/lights.css">
+</head>
+<body>
+  <nav>
+    <div class="menu-item" data-section="lights">Lights</div>
+    <div class="menu-item" data-section="shutters">Shutters</div>
+    <div class="menu-item" data-section="tv">TV</div>
+    <div class="menu-item" data-section="cams">Cams</div>
+  </nav>
+
+  <div id="app">
+    <div class="content" id="content-area">
+      Select a section from the menu
+    </div>
+  </div>
+
+  <!-- JS solo in fondo al body -->
+  <script src="/static/main.js"></script>
+  <script src="/static/lights/lights.js"></script>
+</body>
+</html>

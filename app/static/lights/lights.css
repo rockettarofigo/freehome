@@ -1,0 +1,49 @@
+.lights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 10px;
+}
+
+.light-btn {
+  background: #33e0ff;
+  border: 1px solid #1af0ff;
+  color: #ffffffcc;
+  padding: 10px;
+  border-radius: 6px; /* desktop */
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.light-btn:hover {
+  background: #33e0ff;
+  box-shadow: 0 0 0 1px #1af0ff;
+}
+
+.light-btn.active {
+  background: #33e0ff;
+  border: 1px solid #1af0ff;
+  color: #fff;
+  transform: scale(0.96);
+  box-shadow: 0 0 10px rgba(255,136,0,0.7);
+}
+
+/* MOBILE: solo pulsanti light, non menu */
+@media (max-width: 1024px) {
+  .lights-grid {
+    grid-template-columns: 1fr 1fr;  /* due colonne */
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .light-btn {
+    height: 50px;             /* altezza mobile */
+    font-size: 14px;
+    width: 100%;
+    border-radius: 20px;      /* angoli arrotondati */
+    padding: 0;
+  }
+}
