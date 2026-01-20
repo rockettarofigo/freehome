@@ -20,6 +20,8 @@ menuItems.forEach(item => {
       window.initLights();
     } else if (section === 'shutters') { 
       window.initShutters();
+    } else if (section === 'tv') { 
+      window.initTvs();
     } else {
       contentArea.textContent = `Section: ${section} (content placeholder)`;
     }
@@ -39,7 +41,7 @@ function initHomeButtons() {
   const grid = document.createElement('div');
   grid.className = 'home-grid';
 
-  const buttonNames = ["Lights", "Shutters", "TV", "Cams"];
+  const buttonNames = ["Lights", "Shutters", "Tv", "Cams"];
 
   buttonNames.forEach(name => {
     const btn = document.createElement('button');
@@ -57,6 +59,9 @@ btn.addEventListener('click', () => {
     showBackButton();
   } else if (name === "Shutters") { 
     window.initShutters();
+    showBackButton();
+  } else if (name === "Tv") { 
+    window.initTvs();
     showBackButton();
   } else {
     contentArea.textContent = `Section: ${name} (content placeholder)`;
