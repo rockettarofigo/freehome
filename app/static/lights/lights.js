@@ -14,30 +14,37 @@ window.initLights = function() {
     "Dining Room"
   ];
 
-  // Rilevamento mobile
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  const buttonStates = {};
 
-  lightNames.forEach(name => {
-    const btn = document.createElement('button');
-    btn.className = 'light-btn';
-    btn.textContent = name;
+  
+// Pulsanti light
+lightNames.forEach(name => {
+  const btn = document.createElement('button');
+  btn.className = 'light-btn';
+  btn.textContent = name;
 
-    // Se siamo su mobile, imposta altezza, angoli arrotondati e larghezza
-    if (isMobile) {
-      btn.style.height = '50px';     // altezza mobile
-      btn.style.width = '100%';      // tutta la larghezza della colonna
-      btn.style.borderRadius = '20px'; 
-      btn.style.fontSize = '14px';
-    }
+  // Click momentaneo + toggle + fetch
+  btn.addEventListener('click', () => {
+    // Animazione momentanea
+    btn.classList.add('active');
+    setTimeout(() => btn.classList.remove('active'), 150);
 
-    // Momentary click
-    btn.addEventListener('click', () => {
-      btn.classList.add('active');
-      setTimeout(() => btn.classList.remove('active'), 150);
-    });
+    // Toggle stato
+    buttonStates[name] = buttonStates[name] === 'on' ? 'off' : 'on';
 
-    grid.appendChild(btn);
+    // Chiamata al server
+    fetch('/room', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stanza: name, onoff: buttonStates[name] })
+    })
+    .then(res => res.json())
+    .then(data => console.log('Server response:', data))
+    .catch(err => console.error('Errore chiamata /room:', err));
   });
+
+  grid.appendChild(btn);
+});
 
   contentArea.appendChild(grid);
 };

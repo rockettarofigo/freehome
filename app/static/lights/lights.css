@@ -3,6 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   padding: 10px;
+  width: 100%;
 }
 
 .light-btn {
@@ -10,11 +11,13 @@
   border: 1px solid #1af0ff;
   color: #ffffffcc;
   padding: 10px;
-  border-radius: 6px; /* desktop */
+  border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
   transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .light-btn:hover {
@@ -30,20 +33,21 @@
   box-shadow: 0 0 10px rgba(255,136,0,0.7);
 }
 
-/* MOBILE: solo pulsanti light, non menu */
+
 @media (max-width: 1024px) {
   .lights-grid {
-    grid-template-columns: 1fr 1fr;  /* due colonne */
-    gap: 10px;
+    grid-template-columns: 165px 165px;  
+    gap: 20px;
     justify-items: center;
     align-items: center;
+    padding: 0 10px;
   }
 
   .light-btn {
-    height: 50px;             /* altezza mobile */
+    height: 85px;        
+    width: 165px;        
+    border-radius: 20px; 
     font-size: 14px;
-    width: 100%;
-    border-radius: 20px;      /* angoli arrotondati */
     padding: 0;
   }
 }

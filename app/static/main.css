@@ -25,7 +25,7 @@ button,
   font-weight: 700; 
 }
 
-/* RESET */
+
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +33,7 @@ button,
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* BODY */
+
 body {
   background-color: #1e1e2f;
   color: #ffffff;
@@ -41,7 +41,7 @@ body {
   overflow: hidden;
 }
 
-/* NAVBAR TOP */
+
 nav {
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ nav {
   background-color: #5c5c90;
 }
 
-/* APP CONTAINER */
+
 #app {
   height: calc(100vh);
   background-color: #1a1a2b;
@@ -76,7 +76,7 @@ nav {
   padding: 10px;
 }
 
-/* SCROLLBAR (opzionale, stile grafana) */
+
 #app::-webkit-scrollbar {
   width: 8px;
 }
@@ -90,10 +90,10 @@ nav {
   border-radius: 4px;
 }
 
-/* MOBILE – pulsanti home dimensioni aggiornate */
+
 @media (max-width: 1024px) {
   nav {
-    display: none; /* nasconde la barra menu */
+    display: none; 
   }
 
   #app {
@@ -105,9 +105,9 @@ nav {
 
   .home-grid {
     display: grid;
-    grid-template-columns: 165px 165px; /* due colonne fisse */
-    gap: 20px;                           /* spazio tra le colonne */
-    justify-content: center;             /* centra la griglia orizzontalmente */
+    grid-template-columns: 165px 165px; 
+    gap: 20px;                          
+    justify-content: center;            
     align-items: center;
   }
 
