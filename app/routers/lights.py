@@ -1,7 +1,10 @@
 import requests
+from app.routers.hosts import gethostname
 
-def statoluce(room, onoff):
-    url = f"http://{room}/relay/0?turn={onoff}"
+
+def lightstatus(room, onoff):
+    ip = gethostname(room)
+    url = f"http://{ip}/relay/0?turn={onoff}"
     requests.get(url)
 
 

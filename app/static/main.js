@@ -6,7 +6,7 @@ const contentArea = document.getElementById('content-area');
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 // =======================
-// MENU DESKTOP
+// HOME DESKTOP
 // =======================
 menuItems.forEach(item => {
   item.addEventListener('click', () => {
@@ -18,11 +18,14 @@ menuItems.forEach(item => {
 
     if (section === 'lights') {
       window.initLights();
+    } else if (section === 'shutters') { 
+      window.initShutters();
     } else {
       contentArea.textContent = `Section: ${section} (content placeholder)`;
     }
   });
 });
+
 
 // =======================
 // HOME MOBILE
@@ -43,20 +46,23 @@ function initHomeButtons() {
     btn.className = 'home-btn';
     btn.textContent = name;
 
-    btn.addEventListener('click', () => {
-      btn.classList.add('active');
-      setTimeout(() => btn.classList.remove('active'), 150);
+btn.addEventListener('click', () => {
+  btn.classList.add('active');
+  setTimeout(() => btn.classList.remove('active'), 150);
 
-      contentArea.innerHTML = '';
+  contentArea.innerHTML = '';
 
-      if (name === "Lights") {
-        window.initLights();
-        showBackButton();
-      } else {
-        contentArea.textContent = `Section: ${name} (content placeholder)`;
-        showBackButton();
-      }
-    });
+  if (name === "Lights") {
+    window.initLights();
+    showBackButton();
+  } else if (name === "Shutters") { 
+    window.initShutters();
+    showBackButton();
+  } else {
+    contentArea.textContent = `Section: ${name} (content placeholder)`;
+    showBackButton();
+  }
+});
 
     grid.appendChild(btn);
   });

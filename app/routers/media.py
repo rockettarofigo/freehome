@@ -1,6 +1,7 @@
 import subprocess
 import time
 import logging
+from app.routers.hosts import gettvhostname
 
 ADB_PATH = "/usr/bin/adb"  
 
@@ -8,7 +9,8 @@ logging.basicConfig(level=logging.INFO)
 
 
 def connection():
-    subprocess.run([ADB_PATH, "adb", "connect", "firestick:5555"], check=True)
+    ip = gettvhostname("firestick")
+    subprocess.run([ADB_PATH, "adb", "connect", ip, ":5555"], check=True)
 
 def kodi():
     try:

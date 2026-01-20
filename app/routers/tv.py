@@ -6,18 +6,18 @@ import logging
 router = APIRouter()
 
 @router.post("/tv")
-def tv_control(dati: Things):
-    logging.info("TV channel: %s", dati.channel)
+def tv_control(data: Things):
+    logging.info("TV channel: %s", data.channel)
     
     connection()
     
-    if dati.channel == "netflix":
+    if data.channel == "netflix":
         netflix()
-    elif dati.channel == "kodi":
+    elif data.channel == "kodi":
         kodi()
-    elif dati.channel == "disney":
+    elif data.channel == "disney":
         disney()
     else:
-        logging.info("TV channel: %s", dati.channel)
+        logging.info("TV channel: %s", data.channel)
     
-    return {"status": "ok", "channel": dati.channel}
+    return {"status": "ok", "channel": data.channel}

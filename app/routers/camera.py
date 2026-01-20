@@ -7,12 +7,11 @@ import numpy as np
 
 router = APIRouter()
 
-# Dizionario globale: cam_id -> {"cap": VideoCapture, "frame": ultimo frame, "lock": threading.Lock()}
 CAMERAS = {}
 CAMERAS_LOCK = threading.Lock()
 
 def get_difference(first_frame, second_frame):
-    """Applica il tracciamento / motion detection tra due frame"""
+
     first_gray = cv2.cvtColor(first_frame, cv2.COLOR_BGR2GRAY)
     second_gray = cv2.cvtColor(second_frame, cv2.COLOR_BGR2GRAY)
     frame_diff = cv2.absdiff(first_gray, second_gray)
@@ -42,7 +41,7 @@ def get_difference(first_frame, second_frame):
     return annotated_frame
 
 def capture_thread(cam_id):
-    """Thread per leggere continuamente i frame da una camera e applicare motion detection"""
+
     cam = CAMERAS[cam_id]["cap"]
     prev_frame = None
 
@@ -66,7 +65,7 @@ def capture_thread(cam_id):
         time.sleep(0.03)  # ~30 fps
 
 def find_camera(cam_id):
-    """Apre la camera se non è già aperta"""
+
     with CAMERAS_LOCK:
         if cam_id in CAMERAS:
             return CAMERAS[cam_id]
