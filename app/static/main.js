@@ -22,7 +22,10 @@ menuItems.forEach(item => {
       window.initShutters();
     } else if (section === 'tv') { 
       window.initTvs();
-    } else {
+    } else if (section === 'cams') {
+      window.initCams(); 
+    } 
+    else {
       contentArea.textContent = `Section: ${section} (content placeholder)`;
     }
   });
@@ -62,6 +65,9 @@ btn.addEventListener('click', () => {
     showBackButton();
   } else if (name === "Tv") { 
     window.initTvs();
+    showBackButton();
+  } else if (name === "Cams") {
+    window.initCams();
     showBackButton();
   } else {
     contentArea.textContent = `Section: ${name} (content placeholder)`;
