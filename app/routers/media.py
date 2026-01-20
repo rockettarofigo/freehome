@@ -10,7 +10,8 @@ logging.basicConfig(level=logging.INFO)
 
 def connection():
     ip = gettvhostname("firestick")
-    subprocess.run([ADB_PATH, "adb", "connect", ip, ":5555"], check=True)
+    subprocess.run([ADB_PATH, "connect", f"{ip}:5555"], check=True)
+
 
 def kodi():
     try:

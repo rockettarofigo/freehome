@@ -5,7 +5,7 @@ window.initShutters = async function() {
   const grid = document.createElement('div');
   grid.className = 'shutters-grid';
 
-  const shutterNames = ["One", "Two", "Three", "Four", "Five", "Six"];
+  const shutterNames = ["shutter One", "Tshutter wo", "Tshutter hree", "shutter Four", "shutter Five", "shutter Six"];
 
   const buttonStates = {}; 
 
