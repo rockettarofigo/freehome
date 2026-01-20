@@ -1,2 +1,2 @@
-def shutter(stanza, finestra, percentuale):
-    print(stanza, finestra, percentuale)
+def shutter(room, shutter, percentage):
+    print(room, shutter, percentage)

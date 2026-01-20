@@ -8,12 +8,12 @@ router = APIRouter()
 
 @router.post("/room")
 def room_control(dati: Things):
-    logging.info("Stanza: %s, OnOff: %s", dati.stanza, dati.onoff)
-    statoluce(dati.stanza, dati.onoff)
+    logging.info("room: %s, OnOff: %s", dati.room, dati.onoff)
+    statoluce(dati.room, dati.onoff)
     return {"status": "ok"}
 
 @router.post("/shutter")
 def shutter_control(dati: Things):
-    logging.info("Stanza: %s, Finestra: %s, Percentuale: %s", dati.stanza, dati.finestra, dati.percentuale)
-    shutter(dati.stanza, dati.finestra, dati.percentuale)
+    logging.info("room: %s, shutter: %s, percentage: %s", dati.room, dati.shutter, dati.percentage)
+    shutter(dati.room, dati.shutter, dati.percentage)
     return {"status": "ok"}

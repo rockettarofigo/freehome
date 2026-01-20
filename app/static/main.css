@@ -35,7 +35,7 @@ button,
 
 
 body {
-  background-color: #1e1e2f;
+  background-color:  #1e1e2f; 
   color: #ffffff;
   height: 100vh;
   overflow: hidden;
@@ -68,14 +68,12 @@ nav {
   background-color: #5c5c90;
 }
 
-
 #app {
   height: calc(100vh);
-  background-color: #1a1a2b;
+  background-color:  #1e1e2f; 
   overflow: auto;
   padding: 10px;
 }
-
 
 #app::-webkit-scrollbar {
   width: 8px;
@@ -134,8 +132,8 @@ nav {
 
   .back-btn {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 5%;
+    left: 6%;
     background: #33e0ff;
     border: 1px solid #1af0ff;
     color: #ffffffcc;
