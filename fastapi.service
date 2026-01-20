@@ -1,0 +1,13 @@
+[Unit]
+Description=FastAPI Service
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/smarthome/
+Environment="PATH=/root/smarthome/app"
+ExecStart=/usr/bin/uvicorn app.api:app --reload --host 0.0.0.0 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
