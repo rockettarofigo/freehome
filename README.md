@@ -39,6 +39,7 @@ Shelly plus 2PM
 on/off lights \
 change channel on firestick tv \
 camera traking 
+
 ---
 
 ## To Dos
