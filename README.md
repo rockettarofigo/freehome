@@ -22,9 +22,11 @@ sudo cp freehome.service /etc/systemd/system/freehome.service
 
 ---
 
-## Host file
+## File for you to be changed
 
 To populate the host file with the Shellys, insert them on the json caller hosts.json by populating it on the correct section
+
+Change the two arrays "shutterNames" & "lightNames" with your own
 
 ---
 
@@ -66,3 +68,4 @@ The request body must be a JSON object specifying the room name and the desired 
 ```
 
 Set "onoff" to "on" or "off" depending on the action you want to perform.
+
