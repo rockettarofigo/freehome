@@ -1,9 +1,9 @@
 import requests
-from app.routers.hosts import gethostname
+from app.routers.hosts import getshuttername
 
 
-def shutterstatus(room, shutter, percentage):
-    ip = gethostname(room)
+def shutterstatus(shutter, percentage):
+    ip = getshuttername(shutter)
     print(ip,shutter,percentage)
 
 

@@ -14,6 +14,6 @@ def room_control(data: Things):
 
 @router.post("/shutter")
 def shutter_control(data: Things):
-    logging.info("room: %s, shutter: %s, percentage: %s", data.room, data.shutter, data.percentage)
-    shutterstatus(data.room, data.shutter, data.percentage)
+    logging.info("shutter: %s, percentage: %s", data.shutter, data.percentage)
+    shutterstatus(data.shutter, data.percentage)
     return {"status": "ok"}
