@@ -15,9 +15,10 @@
   font-size: 14px;
   cursor: pointer;
   text-align: center;
-  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+  transition: background 0.1s linear, transform 0.05s ease, box-shadow 0.15s ease;
   width: 100%;
   box-sizing: border-box;
+  
 }
 
 .shutters-btn:hover {
@@ -34,7 +35,6 @@
 }
 
 
-/* MOBILE: due colonne, pulsanti touch */
 @media (max-width: 1024px) {
   .shutters-grid {
     grid-template-columns: 165px 165px;  

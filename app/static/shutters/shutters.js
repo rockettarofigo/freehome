@@ -28,43 +28,43 @@ window.initShutters = function() {
 
     let tracking = false;
 
-    btn.addEventListener('touchstart', e => {
-      tracking = true;
-    });
-
-    btn.addEventListener('touchmove', e => {
-      if (!tracking) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      const rect = btn.getBoundingClientRect();
-      let x = touch.clientX - rect.left;
-      x = Math.max(0, Math.min(x, rect.width));
-      percent = Math.round((x / rect.width) * 100);
-      setColor(percent);
-    });
-
-    btn.addEventListener('touchend', e => {
-      if (!tracking) return;
-      tracking = false;
+    // Funzioni generiche
+    const startTracking = () => { tracking = true; };
+    const stopTracking = () => { 
+      if (!tracking) return; 
+      tracking = false; 
 
       console.log(`${name} final: ${percent}%`);
-
-      // Salva percentuale nel LocalStorage
       localStorage.setItem(name, percent);
 
-      // Invia al server
       fetch('/shutter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          shutter: name, 
-          percentage: percent
-        })
+        body: JSON.stringify({ shutter: name, percentage: percent })
       })
       .then(res => res.json())
       .then(data => console.log('Server response:', data))
       .catch(err => console.error('Errore chiamata /shutter:', err));
-    });
+    };
+    const moveTracking = e => {
+      if (!tracking) return;
+      e.preventDefault();
+      const rect = btn.getBoundingClientRect();
+      let x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      x = Math.max(0, Math.min(x, rect.width));
+      percent = Math.round((x / rect.width) * 100);
+      setColor(percent);
+    };
+
+    // TOUCH EVENTS
+    btn.addEventListener('touchstart', startTracking);
+    btn.addEventListener('touchmove', moveTracking);
+    btn.addEventListener('touchend', stopTracking);
+
+    // MOUSE EVENTS
+    btn.addEventListener('mousedown', startTracking);
+    window.addEventListener('mousemove', moveTracking);
+    window.addEventListener('mouseup', stopTracking);
 
     grid.appendChild(btn);
   });

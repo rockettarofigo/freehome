@@ -39,6 +39,7 @@ function initHomeButtons() {
   if (!isMobile) return;
 
   removeBackButton();
+  removeSettingsButton();
   contentArea.innerHTML = '';
 
   const grid = document.createElement('div');
@@ -60,15 +61,19 @@ btn.addEventListener('click', () => {
   if (name === "Lights") {
     window.initLights();
     showBackButton();
+    showSettingsButton("Lights");
   } else if (name === "Shutters") { 
     window.initShutters();
     showBackButton();
+    showSettingsButton("Shutters");
   } else if (name === "Tv") { 
     window.initTvs();
     showBackButton();
+    showSettingsButton("Tv");
   } else if (name === "Cams") {
     window.initCams();
     showBackButton();
+    showSettingsButton("Cams");
   } else {
     contentArea.textContent = `Section: ${name} (content placeholder)`;
     showBackButton();
@@ -102,6 +107,30 @@ function showBackButton() {
 
 function removeBackButton() {
   const btn = document.querySelector('.back-btn');
+  if (btn) btn.remove();
+}
+
+// =======================
+// SETTINGS BUTTON (MOBILE)
+// =======================
+function showSettingsButton(where) {
+  if (!isMobile) return;
+  if (document.querySelector('.settings-btn')) return;
+
+  const setnBtn = document.createElement('button');
+  setnBtn.className = 'settings-btn';
+  setnBtn.textContent = 'Settings';
+
+  setnBtn.addEventListener('click', () => {
+    console.log(where)
+
+  });
+
+  document.body.appendChild(setnBtn);
+}
+
+function removeSettingsButton() {
+  const btn = document.querySelector('.settings-btn');
   if (btn) btn.remove();
 }
 

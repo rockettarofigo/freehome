@@ -1,0 +1,3 @@
+<div id="content-area">
+
+</div>

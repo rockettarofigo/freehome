@@ -14,6 +14,7 @@ window.initLights = function() {
     "Dining Room"
   ];
 
+
   const buttonStates = {};
 
   
