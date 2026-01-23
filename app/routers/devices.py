@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.models import Things
-from app.routers.hosts import getname, addname, getdeviceslist
+from app.routers.hosts import getname, addname, getdeviceslist, deletedevice
 import logging
 import requests
 
@@ -65,8 +65,21 @@ def room_control(data: Things):
     newdevice = addname(data.light, data.shutter, data.ip, data.tv)
 
 
+###                                      ###
+#            get list of device            #
+###                                      ###
 @router.post("/getdeviceslist")
 def room_control(data: Things):
     logging.info("light: %s, shutter: %s, tv: %s", data.light, data.shutter, data.tv)
     devices = getdeviceslist(data.light, data.shutter, data.tv)
+    return devices
+
+
+###                                      ###
+#            delete device                 #
+###                                      ###
+@router.post("/deletedevice")
+def room_control(data: Things):
+    logging.info("light: %s, shutter: %s, tv: %s", data.light, data.shutter, data.tv)
+    devices = deletedevice(data.light, data.shutter, data.tv)
     return devices

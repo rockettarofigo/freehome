@@ -18,7 +18,6 @@
   transition: background 0.1s linear, transform 0.05s ease, box-shadow 0.15s ease;
   width: 100%;
   box-sizing: border-box;
-  
 }
 
 .shutter-btn:hover {

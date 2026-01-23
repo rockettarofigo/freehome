@@ -31,52 +31,79 @@ window.initSettings = function(where) {
   const submitBtn = document.createElement('button');
   submitBtn.textContent = 'Invia';
 
-submitBtn.onclick = async () => {
-  const subKey = nameInput.value.trim(); 
-  const ipValue = ipInput.value.trim();  
+  submitBtn.onclick = async () => {
+    const subKey = nameInput.value.trim(); 
+    const ipValue = ipInput.value.trim();  
 
-  if (!subKey) {
-    console.log('Insert a valid name');
-    return;
-  }
-  if (!ipValue) {
-    console.log('Inser a valid ip');
-    return;
-  }
-
-  const data = {
-    light: {},
-    tv: {},
-    shutter: {}
-  };
-  data.light[subKey] = ipValue; 
-
-  const flatData = {
-    ip: ipValue,                       
-   [cleanWhere]: subKey  
-  };
-
-  console.log(flatData)
-
-  try {
-    const res = await fetch('/newdevice', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(flatData)
-    });
-    if (res.ok) {
-      console.log('Successfully sent');
-    } else {
-      console.log('Error on the data stream');
+    if (!subKey) {
+      console.log('Insert a valid name');
+      return;
     }
-  } catch (e) {
-    console.log('Connection error: ' + e.message);
-  }
-};
+    if (!ipValue) {
+      console.log('Inserisci un IP valido');
+      return;
+    }
+
+    const flatData = {
+      ip: ipValue,                       
+      [cleanWhere]: subKey  
+    };
+
+    try {
+      const res = await fetch('/newdevice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(flatData)
+      });
+      if (res.ok) {
+        console.log('Successfully sent');
+      } else {
+        console.log('Error on the data stream');
+      }
+    } catch (e) {
+      console.log('Connection error: ' + e.message);
+    }
+  };
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Elimina';
+
+  deleteBtn.onclick = async () => {
+    const subKey = nameInput.value.trim();
+
+    if (!subKey) {
+      console.log('Insert a valid name');
+      return;
+    }
+
+    const flatData = {
+      [cleanWhere]: subKey  
+    };
+
+    try {
+      const res = await fetch('/deletedevice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(flatData)
+      });
+      if (res.ok) {
+        console.log('Successfully sent');
+      } else {
+        console.log('Error on the data stream');
+      }
+    } catch (e) {
+      console.log('Connection error: ' + e.message);
+    }
 
 
+  };
+
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'button-group';
+  btnGroup.appendChild(submitBtn);
+  btnGroup.appendChild(deleteBtn);
 
   contentArea.appendChild(nameGroup);
   contentArea.appendChild(ipGroup);
-  contentArea.appendChild(submitBtn);
+  contentArea.appendChild(btnGroup);
 };

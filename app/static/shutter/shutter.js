@@ -5,7 +5,6 @@ window.initshutter = function() {
   const grid = document.createElement('div');
   grid.className = 'shutter-grid';
 
-//  const shutterNames = ["One", "Two", "Three", "Four", "Five", "Six"];
   
   fetch('/getdeviceslist', {
     method: 'POST',
@@ -24,10 +23,8 @@ window.initshutter = function() {
     btn.className = 'shutter-btn';
     btn.textContent = name;
 
-    // Recupera percentuale salvata nel LocalStorage oppure 0
     let percent = Number(localStorage.getItem(name)) || 0;
 
-    // Imposta colore iniziale basato sulla percentuale salvata
     const setColor = p => {
       const orange = [255, 136, 0];  
       const blue   = [51, 224, 255]; 
@@ -40,7 +37,6 @@ window.initshutter = function() {
 
     let tracking = false;
 
-    // Funzioni generiche
     const startTracking = () => { tracking = true; };
     const stopTracking = () => { 
       if (!tracking) return; 
@@ -68,12 +64,10 @@ window.initshutter = function() {
       setColor(percent);
     };
 
-    // TOUCH EVENTS
     btn.addEventListener('touchstart', startTracking);
     btn.addEventListener('touchmove', moveTracking);
     btn.addEventListener('touchend', stopTracking);
 
-    // MOUSE EVENTS
     btn.addEventListener('mousedown', startTracking);
     window.addEventListener('mousemove', moveTracking);
     window.addEventListener('mouseup', stopTracking);

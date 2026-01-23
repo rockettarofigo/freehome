@@ -18,19 +18,17 @@ menuItems.forEach(item => {
 
     if (section === 'light') {
       window.initlight();
-    } else if (section === 'shutter') { 
+    } else if (section === 'shutter') {
       window.initshutter();
-    } else if (section === 'tv') { 
+    } else if (section === 'tv') {
       window.initTvs();
     } else if (section === 'cams') {
-      window.initCams(); 
-    } 
-    else {
-      contentArea.textContent = `Section: ${section} (content placeholder)`;
+      window.initCams();
+    } else {
+      contentArea.textContent = `Section: ${section}`;
     }
   });
 });
-
 
 // =======================
 // HOME MOBILE
@@ -42,101 +40,99 @@ function initHomeButtons() {
   removeSettingsButton();
   contentArea.innerHTML = '';
 
+  const wrapper = document.createElement('div');
+  wrapper.className = 'home-wrapper';
+
+  // IMMAGINE SOPRA
+  const hero = document.createElement('img');
+  hero.src = '/static/img/home-domotica.png';
+  hero.alt = 'Smart Home';
+  hero.className = 'home-hero';
+
+  // GRIGLIA PULSANTI
   const grid = document.createElement('div');
   grid.className = 'home-grid';
 
-  const buttonNames = ["light", "shutter", "Tv", "Cams"];
+  const buttonNames = ['light', 'shutter', 'Tv', 'Cams'];
 
   buttonNames.forEach(name => {
     const btn = document.createElement('button');
     btn.className = 'home-btn';
     btn.textContent = name;
 
-btn.addEventListener('click', () => {
-  btn.classList.add('active');
-  setTimeout(() => btn.classList.remove('active'), 150);
+    btn.addEventListener('click', () => {
+      btn.classList.add('active');
+      setTimeout(() => btn.classList.remove('active'), 150);
 
-  contentArea.innerHTML = '';
+      contentArea.innerHTML = '';
 
-  if (name === "light") {
-    window.initlight();
-    showBackButton();
-    showSettingsButton("light");
-  } else if (name === "shutter") { 
-    window.initshutter();
-    showBackButton();
-    showSettingsButton("shutter");
-  } else if (name === "Tv") { 
-    window.initTvs();
-    showBackButton();
-    showSettingsButton("Tv");
-  } else if (name === "Cams") {
-    window.initCams();
-    showBackButton();
-    showSettingsButton("Cams");
-  } else {
-    contentArea.textContent = `Section: ${name} (content placeholder)`;
-    showBackButton();
-  }
-});
+      if (name === 'light') {
+        window.initlight();
+        showSettingsButton('light');
+      } else if (name === 'shutter') {
+        window.initshutter();
+        showSettingsButton('shutter');
+      } else if (name === 'Tv') {
+        window.initTvs();
+        showSettingsButton('Tv');
+      } else if (name === 'Cams') {
+        window.initCams();
+        showSettingsButton('Cams');
+      }
+
+      showBackButton();
+    });
 
     grid.appendChild(btn);
   });
 
-  contentArea.appendChild(grid);
+  wrapper.appendChild(hero);
+  wrapper.appendChild(grid);
+  contentArea.appendChild(wrapper);
 }
 
 // =======================
-// BACK BUTTON (MOBILE)
+// BACK BUTTON
 // =======================
 function showBackButton() {
-  if (!isMobile) return;
-  if (document.querySelector('.back-btn')) return;
+  if (!isMobile || document.querySelector('.back-btn')) return;
 
-  const backBtn = document.createElement('button');
-  backBtn.className = 'back-btn';
-  backBtn.textContent = 'Back';
+  const btn = document.createElement('button');
+  btn.className = 'back-btn';
+  btn.textContent = 'Back';
 
-  backBtn.addEventListener('click', () => {
-    backBtn.remove();
+  btn.onclick = () => {
+    btn.remove();
     initHomeButtons();
-  });
+  };
 
-  document.body.appendChild(backBtn);
+  document.body.appendChild(btn);
 }
 
 function removeBackButton() {
-  const btn = document.querySelector('.back-btn');
-  if (btn) btn.remove();
+  document.querySelector('.back-btn')?.remove();
 }
 
 // =======================
-// SETTINGS BUTTON (MOBILE)
+// SETTINGS BUTTON
 // =======================
 function showSettingsButton(where) {
-  if (!isMobile) return;
-  if (document.querySelector('.settings-btn')) return;
+  if (!isMobile || document.querySelector('.settings-btn')) return;
 
-  const setnBtn = document.createElement('button');
-  setnBtn.className = 'settings-btn';
-  setnBtn.textContent = 'Settings';
+  const btn = document.createElement('button');
+  btn.className = 'settings-btn';
+  btn.textContent = 'Settings';
 
-  setnBtn.addEventListener('click', () => {
-    console.log(where)
-    initSettings(where);
-  });
+  btn.onclick = () => initSettings(where);
 
-  document.body.appendChild(setnBtn);
+  document.body.appendChild(btn);
 }
 
 function removeSettingsButton() {
-  const btn = document.querySelector('.settings-btn');
-  if (btn) btn.remove();
+  document.querySelector('.settings-btn')?.remove();
 }
 
 // =======================
 // INIT
 // =======================
-window.addEventListener('DOMContentLoaded', () => {
-  initHomeButtons();
-});
+window.addEventListener('DOMContentLoaded', initHomeButtons);
