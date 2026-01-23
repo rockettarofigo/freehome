@@ -1,0 +1,40 @@
+1. Introduction
+	Freehome is an open-source alternative to commercial home automation applications.
+	The application integrates and manages lights, shutters, TVs, cameras, and inverters within a single platform.
+
+	The main objective of Freehome is to offer maximum flexibility, enabling the integration of any device commonly used in a home environment, without relying on proprietary ecosystems.
+
+2. Features
+	Web application with responsive user interface
+	Browser-based access
+	Light control
+	Shutter control
+	TV integration
+	Camera monitoring
+	Inverter management
+	Additional features planned for future releases
+
+3. Architecture
+	Backend: Python
+	Frontend: Angular
+	Mobile platforms:
+		iOS
+		Android
+	Communication protocol:
+		HTTPS
+
+4. Requirements
+	Linux-based PC or server
+	Network connectivity
+
+5. Supported Devices
+Freehome supports a wide range of devices commonly used in home automation environments.
+	Shelly Devices
+		Native support for Shelly smart devices
+		Lights, relays, switches, and power monitoring modules
+	USB Webcams
+		Compatible with any standard USB webcam
+		Used for basic video monitoring
+	Inverters
+		Support for generic inverters
+		Monitoring and data integration depending on inverter capabilities and available protocols

@@ -1,15 +1,27 @@
-window.initShutters = function() {
+window.initshutter = function() {
   const contentArea = document.getElementById('content-area');
   contentArea.innerHTML = '';
 
   const grid = document.createElement('div');
-  grid.className = 'shutters-grid';
+  grid.className = 'shutter-grid';
 
-  const shutterNames = ["One", "Two", "Three", "Four", "Five", "Six"];
+//  const shutterNames = ["One", "Two", "Three", "Four", "Five", "Six"];
   
+  fetch('/getdeviceslist', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ shutter: "shutter" })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log('Server response:', data);
+
+    const shutterNames = Object.keys(data);
+
+
   shutterNames.forEach(name => {
     const btn = document.createElement('button');
-    btn.className = 'shutters-btn';
+    btn.className = 'shutter-btn';
     btn.textContent = name;
 
     // Recupera percentuale salvata nel LocalStorage oppure 0
@@ -70,4 +82,6 @@ window.initShutters = function() {
   });
 
   contentArea.appendChild(grid);
+  })
+  .catch(err => console.error('Errore chiamata /getdeviceslist:', err));
 };

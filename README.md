@@ -54,7 +54,7 @@ speaker to cam
 ## APIs
 To control a room, send a POST request to the following endpoint:
 ```bash
-http://[IP OF THE SERVER]:8000/room
+http://[IP OF THE SERVER]:8000/light
 
 ```
 

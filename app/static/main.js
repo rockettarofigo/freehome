@@ -16,10 +16,10 @@ menuItems.forEach(item => {
     const section = item.dataset.section;
     contentArea.innerHTML = '';
 
-    if (section === 'lights') {
-      window.initLights();
-    } else if (section === 'shutters') { 
-      window.initShutters();
+    if (section === 'light') {
+      window.initlight();
+    } else if (section === 'shutter') { 
+      window.initshutter();
     } else if (section === 'tv') { 
       window.initTvs();
     } else if (section === 'cams') {
@@ -45,7 +45,7 @@ function initHomeButtons() {
   const grid = document.createElement('div');
   grid.className = 'home-grid';
 
-  const buttonNames = ["Lights", "Shutters", "Tv", "Cams"];
+  const buttonNames = ["light", "shutter", "Tv", "Cams"];
 
   buttonNames.forEach(name => {
     const btn = document.createElement('button');
@@ -58,14 +58,14 @@ btn.addEventListener('click', () => {
 
   contentArea.innerHTML = '';
 
-  if (name === "Lights") {
-    window.initLights();
+  if (name === "light") {
+    window.initlight();
     showBackButton();
-    showSettingsButton("Lights");
-  } else if (name === "Shutters") { 
-    window.initShutters();
+    showSettingsButton("light");
+  } else if (name === "shutter") { 
+    window.initshutter();
     showBackButton();
-    showSettingsButton("Shutters");
+    showSettingsButton("shutter");
   } else if (name === "Tv") { 
     window.initTvs();
     showBackButton();
@@ -123,7 +123,7 @@ function showSettingsButton(where) {
 
   setnBtn.addEventListener('click', () => {
     console.log(where)
-
+    initSettings(where);
   });
 
   document.body.appendChild(setnBtn);

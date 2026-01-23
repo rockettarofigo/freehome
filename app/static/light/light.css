@@ -1,4 +1,4 @@
-.lights-grid {
+.light-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
@@ -35,7 +35,7 @@
 
 
 @media (max-width: 1024px) {
-  .lights-grid {
+  .light-grid {
     grid-template-columns: 165px 165px;  
     gap: 20px;
     justify-items: center;

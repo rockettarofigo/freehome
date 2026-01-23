@@ -1,4 +1,4 @@
-.shutters-grid {
+.shutter-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.shutters-btn {
+.shutter-btn {
   background: #33e0ff;
   border: 1px solid #1af0ff;
   color: #ffffffcc;
@@ -21,12 +21,12 @@
   
 }
 
-.shutters-btn:hover {
+.shutter-btn:hover {
   background: #33e0ff;
   box-shadow: 0 0 0 1px #1af0ff;
 }
 
-.shutters-btn.active {
+.shutter-btn.active {
   background: #33e0ff;
   border: 1px solid #1af0ff;
   color: #fff;
@@ -36,7 +36,7 @@
 
 
 @media (max-width: 1024px) {
-  .shutters-grid {
+  .shutter-grid {
     grid-template-columns: 165px 165px;  
     gap: 20px;
     justify-items: center;
@@ -44,7 +44,7 @@
     padding: 0 10px;
   }
 
-  .shutters-btn {
+  .shutter-btn {
     height: 85px;        
     width: 165px;        
     border-radius: 20px; 
