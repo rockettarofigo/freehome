@@ -1,4 +1,4 @@
-window.initSolar = function(where) {
+window.initAircon = function(where) {
   const contentArea = document.getElementById('content-area');
   contentArea.innerHTML = '';
 }

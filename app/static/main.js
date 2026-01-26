@@ -24,6 +24,10 @@ menuItems.forEach(item => {
       window.initTvs();
     } else if (section === 'cams') {
       window.initCams();
+    } else if (section === 'solar') {
+      window.initSolar();
+    } else if (section === 'aircon') {
+      window.initAircon();
     } else {
       contentArea.textContent = `Section: ${section}`;
     }
@@ -43,17 +47,15 @@ function initHomeButtons() {
   const wrapper = document.createElement('div');
   wrapper.className = 'home-wrapper';
 
-  // IMMAGINE SOPRA
   const hero = document.createElement('img');
   hero.src = '/static/img/home-domotica.png';
   hero.alt = 'Smart Home';
   hero.className = 'home-hero';
 
-  // GRIGLIA PULSANTI
   const grid = document.createElement('div');
   grid.className = 'home-grid';
 
-  const buttonNames = ['light', 'shutter', 'Tv', 'Cams'];
+  const buttonNames = ['light', 'shutter', 'tv', 'cams', 'solar', 'aircon'];
 
   buttonNames.forEach(name => {
     const btn = document.createElement('button');
@@ -72,12 +74,18 @@ function initHomeButtons() {
       } else if (name === 'shutter') {
         window.initshutter();
         showSettingsButton('shutter');
-      } else if (name === 'Tv') {
+      } else if (name === 'tv') {
         window.initTvs();
-        showSettingsButton('Tv');
-      } else if (name === 'Cams') {
+        showSettingsButton('tv');
+      } else if (name === 'cams') {
         window.initCams();
-        showSettingsButton('Cams');
+        showSettingsButton('cams');
+      } else if (name === 'solar') {
+        window.initSolar();
+        showSettingsButton('solar');
+      } else if (name === 'aircon') {
+        window.initAircon();
+        showSettingsButton('aircon');
       }
 
       showBackButton();

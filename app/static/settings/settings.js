@@ -57,6 +57,7 @@ window.initSettings = function(where) {
       });
       if (res.ok) {
         console.log('Successfully sent');
+        initHomeButtons();
       } else {
         console.log('Error on the data stream');
       }
@@ -88,6 +89,7 @@ window.initSettings = function(where) {
       });
       if (res.ok) {
         console.log('Successfully sent');
+        initHomeButtons();
       } else {
         console.log('Error on the data stream');
       }
@@ -106,4 +108,5 @@ window.initSettings = function(where) {
   contentArea.appendChild(nameGroup);
   contentArea.appendChild(ipGroup);
   contentArea.appendChild(btnGroup);
+
 };

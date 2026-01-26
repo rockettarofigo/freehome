@@ -1,0 +1,52 @@
+http://localhost:8000/light
+{
+  "light": "Office",
+  "onoff": "on"
+}
+
+{
+  "light": "Office",
+  "onoff": "off"
+}
+
+
+http://localhost:8000/shutter
+{
+  "shutter": "Office",
+  "percentage": "50"
+}
+
+
+http://localhost:8000/newdevice
+{
+  "tv": "",
+  "shutter": "Office",
+  "ip": "192.168.0.6", 
+  "light": ""
+}
+
+
+http://localhost:8000/getdeviceslist
+{
+  "light": "light",
+  "shutter": "",
+  "tv": ""
+}
+
+http://localhost:8000/deletedevice
+{
+  "tv": "",
+  "shutter": "",
+  "light": "Office"
+}
+
+http://localhost:8000/camera/0
+
+http://localhost:8000/tv
+{
+  "channel": "netflix"
+}
+
+
+
+
