@@ -35,26 +35,20 @@ def room_control(data: Things):
 def shutter_control(data: Things):
     logging.info("shutter: %s, percentage: %s", data.shutter, data.percentage)
     ip = getname("shutter",data.shutter)
-    url = f"http://{ip}/rpc/Shutter.Set"
-    print(url)
-#    payload = {
-#        "id": 0,
-#        "go_to_target": "true",
-#        "target": data.percentage
-#    }
-#    try:
-#        r = requests.post(url, json=payload, timeout=3)
-#        r.raise_for_status()
-#        return {
-#            "status": "ok",
-#            "device_url": url
-#        }
-#    except requests.RequestException as e:
-#        logging.error(e)
-#        return {
-#            "status": "error",
-#            "message": str(e)
-#        }
+    url = f"http://{ip}/roller/0?go=to_pos&roller_pos={data.percentage}"
+    try:
+        r = requests.get(url, timeout=3)
+        r.raise_for_status()
+        return {
+            "status": "ok",
+            "device_url": url
+        }
+    except requests.RequestException as e:
+        logging.error(e)
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 ###                                      ###
 #            insert new devices            #
