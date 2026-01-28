@@ -1,9 +1,9 @@
 {
   "light": {
-    "office": "192.168.0.6"
+    "office": "192.168.0.4"
   },
   "tv": {
-    "firestick": "192.168.0.2"
+    "firestick": "192.168.0.11"
   },
   "shutter": {
     "bedroom": "192.168.0.2"

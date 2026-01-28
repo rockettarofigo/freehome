@@ -29,7 +29,9 @@ def room_control(data: Things):
             "message": str(e)
         }
         
-        
+###                                      ###
+#       API to triggher the shutter        #
+###                                      ###
 
 @router.post("/shutter")
 def shutter_control(data: Things):
@@ -49,6 +51,26 @@ def shutter_control(data: Things):
             "status": "error",
             "message": str(e)
         }
+        
+@router.post("/shutterstartstop")
+def shutter_control(data: Things):
+    logging.info("shutter: %s, startstop: %s", data.shutter, data.startstop)
+    ip = getname("shutter",data.shutter)
+    url = f"http://{ip}/roller/0?go={data.startstop}"
+    try:
+        r = requests.get(url, timeout=3)
+        r.raise_for_status()
+        return {
+            "status": "ok",
+            "device_url": url
+        }
+    except requests.RequestException as e:
+        logging.error(e)
+        return {
+            "status": "error",
+            "message": str(e)
+        }        
+        
 
 ###                                      ###
 #            insert new devices            #

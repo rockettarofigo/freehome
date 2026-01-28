@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.shutter-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
 .shutter-btn {
   background: #33e0ff;
   border: 1px solid #1af0ff;
@@ -21,38 +27,62 @@
 }
 
 .shutter-btn:hover {
-  background: #33e0ff;
   box-shadow: 0 0 0 1px #1af0ff;
 }
 
 .shutter-btn.active {
-  background: #33e0ff;
-  border: 1px solid #1af0ff;
-  color: #fff;
   transform: scale(0.96);
   box-shadow: 0 0 10px rgba(255,136,0,0.7);
+  color: #fff;
 }
 
-
+/* ===== MOBILE ===== */
 @media (max-width: 1024px) {
+
   .shutter-grid {
-    grid-template-columns: 165px 165px;  
+    grid-template-columns: 1fr;
     gap: 20px;
-    justify-items: center;
+    padding: 10px;
+  }
+
+  .shutter-row {
+    justify-content: center;
     align-items: center;
-    padding: 0 10px;
   }
 
   .shutter-btn {
-    height: 85px;        
-    width: 165px;        
-    border-radius: 20px; 
-    font-size: 14px;
+    height: 85px;
+    width: 165px;
+    border-radius: 20px;
+    font-size: 1.5rem;
     padding: 0;
-    font-size: 1.5rem; 
+    touch-action: none;
+  }
 
-    touch-action: none;       
-    transition: background 0.1s linear; 
+  .shutter-action {
+    width: 80px;
+    height: 85px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    background: #33e0ff;         
+    border: 2px solid #1af0ff;
+    color: #f5f9fa;
+    transition: transform 0.05s ease, box-shadow 0.15s ease;
+  }
+
+  .shutter-action:active {
+    transform: scale(0.96);
+  }
+
+  .shutter-action.active {
+    background: #33e0ff;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(51,224,255,0.9);
   }
 }
 
+@media (min-width: 1025px) {
+  .shutter-action {
+    display: none;
+  }
+}

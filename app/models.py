@@ -10,3 +10,4 @@ class Things(BaseModel):
     percentage: Optional[int] = None
     channel: Optional[str] = None
     tv: Optional[str] = None
+    startstop: Optional[str] = None
