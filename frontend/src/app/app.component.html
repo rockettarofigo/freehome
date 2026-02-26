@@ -1,0 +1,21 @@
+<div class="app-container">
+  <nav class="sidebar">
+    <div class="logo">
+      Free<span>Home</span>
+    </div>
+    <ul class="nav-links">
+      <li><a routerLink="/dashboard" routerLinkActive="active"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a routerLink="/light" routerLinkActive="active"><span class="icon">💡</span> Lights</a></li>
+      <li><a routerLink="/shutter" routerLinkActive="active"><span class="icon">🪟</span> Shutters</a></li>
+      <li><a routerLink="/tv" routerLinkActive="active"><span class="icon">📺</span> TV</a></li>
+      <li><a routerLink="/cams" routerLinkActive="active"><span class="icon">📹</span> Cameras</a></li>
+      <li><a routerLink="/solar" routerLinkActive="active"><span class="icon">☀️</span> Solar</a></li>
+      <li><a routerLink="/aircon" routerLinkActive="active"><span class="icon">❄️</span> Aircon</a></li>
+      <li><a routerLink="/settings" routerLinkActive="active"><span class="icon">⚙️</span> Settings</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

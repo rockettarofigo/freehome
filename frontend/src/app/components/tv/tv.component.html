@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h2>TV Control</h2>
+</div>
+
+<div class="grid">
+  <div class="card tv-card" *ngFor="let channel of channels" (click)="setChannel(channel.name)">
+    <span class="tv-icon">{{ channel.icon }}</span>
+    <span class="tv-name">{{ channel.name }}</span>
+  </div>
+</div>

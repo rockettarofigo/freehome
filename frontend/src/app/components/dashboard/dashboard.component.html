@@ -1,0 +1,35 @@
+<div class="welcome-section">
+  <h1>Welcome to FreeHome</h1>
+  <p class="time">{{ currentTime }}</p>
+</div>
+
+<div class="grid">
+  <div class="card stat-card" routerLink="/light">
+    <div class="stat-icon">💡</div>
+    <div class="stat-info">
+      <span class="stat-value">{{ stats.lights }}</span>
+      <span class="stat-label">Lights Connected</span>
+    </div>
+  </div>
+
+  <div class="card stat-card" routerLink="/shutter">
+    <div class="stat-icon">🪟</div>
+    <div class="stat-info">
+      <span class="stat-value">{{ stats.shutters }}</span>
+      <span class="stat-label">Shutters Connected</span>
+    </div>
+  </div>
+
+  <div class="card stat-card" routerLink="/tv">
+    <div class="stat-icon">📺</div>
+    <div class="stat-info">
+      <span class="stat-value">{{ stats.tvs }}</span>
+      <span class="stat-label">TVs / Firesticks</span>
+    </div>
+  </div>
+</div>
+
+<div class="card hero-card">
+  <h3>Smart Home System</h3>
+  <p>Manage your home devices from one single place. Secure, fast, and open source.</p>
+</div>

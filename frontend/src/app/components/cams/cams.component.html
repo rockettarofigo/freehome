@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h2>Security Cameras</h2>
+</div>
+
+<div class="cams-grid">
+  <div class="cam-wrapper card" *ngFor="let camId of cams">
+    <img [src]="baseUrl + '/camera/' + camId" [alt]="'Camera ' + camId" (error)="handleError($event, camId)">
+    <div class="cam-label">Camera {{ camId }}</div>
+  </div>
+</div>

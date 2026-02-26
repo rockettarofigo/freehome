@@ -1,0 +1,65 @@
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.time {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: scale(1.02);
+  background-color: rgba(187, 134, 252, 0.05);
+}
+
+.stat-icon {
+  font-size: 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--secondary-color);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.hero-card {
+  margin-top: 20px;
+  background: linear-gradient(135deg, var(--surface-color) 0%, #2a2a2a 100%);
+  border-left: 4px solid var(--primary-color);
+}
+
+.hero-card h3 {
+  margin-top: 0;
+}
