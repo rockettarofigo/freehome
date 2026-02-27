@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CamsComponent implements OnInit {
   cams = [0, 1, 2, 3, 4, 5];
-  baseUrl = 'http://localhost:8000'; // FastAPI address
+  baseUrl = ''; // Using relative path
 
   constructor() { }
 

@@ -77,8 +77,9 @@ def shutter_control(data: Things):
 ###                                      ###
 @router.post("/newdevice")
 def room_control(data: Things):
-    logging.info("light: %s, shutter: %s, ip: %s, channel: %s", data.light, data.shutter, data.ip, data.channel)
-    newdevice = addname(data.light, data.shutter, data.ip, data.tv)
+    logging.info("light: %s, shutter: %s, ip: %s, tv: %s", data.light, data.shutter, data.ip, data.tv)
+    newdevice, status = addname(data.light, data.shutter, data.ip, data.tv)
+    return {"status": status, "devices": newdevice}
 
 
 ###                                      ###

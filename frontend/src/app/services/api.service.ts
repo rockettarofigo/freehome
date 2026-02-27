@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8000'; // FastAPI address
+  // Using relative URLs so it works when accessed from any IP/domain
+  private apiUrl = ''; 
 
   constructor(private http: HttpClient) { }
 
