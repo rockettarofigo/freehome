@@ -1,5 +1,6 @@
-<div class="app-container">
-  <nav class="sidebar">
+<div class="app-container" [class.mobile-view]="isMobile">
+  <!-- Desktop Sidebar -->
+  <nav class="sidebar" *ngIf="!isMobile">
     <div class="logo">
       Free<span>Home</span>
     </div>
@@ -14,6 +15,17 @@
       <li><a routerLink="/settings" routerLinkActive="active"><span class="icon">⚙️</span> Settings</a></li>
     </ul>
   </nav>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header" *ngIf="isMobile">
+    <button class="back-btn" *ngIf="showBackButton" (click)="goBack()">
+      <span class="icon">⬅️</span>
+    </button>
+    <div class="logo">
+      Free<span>Home</span>
+    </div>
+    <div class="spacer" *ngIf="showBackButton"></div>
+  </header>
 
   <main class="content">
     <router-outlet></router-outlet>

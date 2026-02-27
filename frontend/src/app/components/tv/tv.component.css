@@ -1,25 +1,40 @@
+.tv-device-info {
+  margin-bottom: 30px;
+}
+
+.tv-device-info h3 {
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
+.tv-device-info p {
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
 .tv-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 180px;
+  height: 150px;
   transition: var(--transition);
 }
 
 .tv-card:hover {
   transform: translateY(-5px);
+  background-color: rgba(187, 134, 252, 0.1);
   border: 1px solid var(--primary-color);
 }
 
 .tv-icon {
-  font-size: 64px;
-  margin-bottom: 15px;
+  font-size: 48px;
+  margin-bottom: 10px;
 }
 
 .tv-name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;

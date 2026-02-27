@@ -1,35 +1,16 @@
-<div class="welcome-section">
-  <h1>Welcome to FreeHome</h1>
-  <p class="time">{{ currentTime }}</p>
-</div>
+<div class="home-container">
+  <header class="home-header">
+    <h1>Free<span>Home</span></h1>
+    <p class="time">{{ currentTime }}</p>
+  </header>
 
-<div class="grid">
-  <div class="card stat-card" routerLink="/light">
-    <div class="stat-icon">💡</div>
-    <div class="stat-info">
-      <span class="stat-value">{{ stats.lights }}</span>
-      <span class="stat-label">Lights Connected</span>
+  <div class="home-grid">
+    <div class="menu-card" *ngFor="let item of menuItems" [routerLink]="item.route">
+      <div class="card-icon">{{ item.icon }}</div>
+      <div class="card-content">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
     </div>
   </div>
-
-  <div class="card stat-card" routerLink="/shutter">
-    <div class="stat-icon">🪟</div>
-    <div class="stat-info">
-      <span class="stat-value">{{ stats.shutters }}</span>
-      <span class="stat-label">Shutters Connected</span>
-    </div>
-  </div>
-
-  <div class="card stat-card" routerLink="/tv">
-    <div class="stat-icon">📺</div>
-    <div class="stat-info">
-      <span class="stat-value">{{ stats.tvs }}</span>
-      <span class="stat-label">TVs / Firesticks</span>
-    </div>
-  </div>
-</div>
-
-<div class="card hero-card">
-  <h3>Smart Home System</h3>
-  <p>Manage your home devices from one single place. Secure, fast, and open source.</p>
 </div>

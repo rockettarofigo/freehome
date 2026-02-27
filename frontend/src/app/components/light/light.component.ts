@@ -20,11 +20,10 @@ export class LightComponent implements OnInit {
     this.loading = true;
     this.apiService.getDevicesList('all').subscribe(
       (data: any) => {
-        // Assume data is an array of light names from the response
-        // Based on the backend, getdeviceslist returns what hosts.getdeviceslist returns.
-        this.lights = Object.keys(data.light || {}).map(key => ({
+        // data is now { "name": "ip", ... }
+        this.lights = Object.keys(data).map(key => ({
           name: key,
-          status: 'off' // Default status as we don't have real-time state yet
+          status: 'off'
         }));
         this.loading = false;
       },

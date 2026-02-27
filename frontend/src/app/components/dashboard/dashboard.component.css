@@ -1,11 +1,22 @@
-.welcome-section {
+.home-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.home-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.welcome-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.home-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+}
+
+.home-header h1 span {
+  color: var(--primary-color);
 }
 
 .time {
@@ -14,52 +25,69 @@
   font-weight: 300;
 }
 
-.stat-card {
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.menu-card {
+  background-color: var(--surface-color);
+  border-radius: 20px;
+  padding: 30px;
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
   transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.stat-card:hover {
-  transform: scale(1.02);
-  background-color: rgba(187, 134, 252, 0.05);
+.menu-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(187, 134, 252, 0.08);
+  border-color: var(--primary-color);
 }
 
-.stat-icon {
-  font-size: 40px;
+.card-icon {
+  font-size: 48px;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 18px;
 }
 
-.stat-info {
-  display: flex;
-  flex-direction: column;
+.card-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  color: var(--text-color);
 }
 
-.stat-value {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--secondary-color);
-}
-
-.stat-label {
+.card-content p {
+  margin: 0;
   color: var(--text-muted);
   font-size: 0.9rem;
 }
 
-.hero-card {
-  margin-top: 20px;
-  background: linear-gradient(135deg, var(--surface-color) 0%, #2a2a2a 100%);
-  border-left: 4px solid var(--primary-color);
-}
-
-.hero-card h3 {
-  margin-top: 0;
+@media (max-width: 768px) {
+  .home-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu-card {
+    padding: 20px;
+  }
+  
+  .card-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
+  }
 }

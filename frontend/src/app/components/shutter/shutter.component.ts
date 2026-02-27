@@ -20,7 +20,7 @@ export class ShutterComponent implements OnInit {
     this.loading = true;
     this.apiService.getDevicesList(undefined, 'all').subscribe(
       (data: any) => {
-        this.shutters = Object.keys(data.shutter || {}).map(key => ({
+        this.shutters = Object.keys(data).map(key => ({
           name: key,
           position: 0
         }));

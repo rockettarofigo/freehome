@@ -27,7 +27,11 @@ export class ApiService {
   }
 
   getDevicesList(light?: string, shutter?: string, tv?: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/getdeviceslist`, { light, shutter, tv });
+    const payload: any = {};
+    if (light) payload.light = light;
+    if (shutter) payload.shutter = shutter;
+    if (tv) payload.tv = tv;
+    return this.http.post(`${this.apiUrl}/getdeviceslist`, payload);
   }
 
   newDevice(data: any): Observable<any> {
