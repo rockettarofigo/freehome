@@ -62,7 +62,7 @@ def getdeviceslist(light=None, shutter=None, tv=None):
 ###                                 ###
 #           delete devices            #
 ###                                 ###
-def deletedevice(light=None, shutter=None, ip=None, tv=None):
+def deletedevice(light=None, shutter=None, tv=None):
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     json_path = os.path.join(BASE_DIR, "..", "hosts.json")
     

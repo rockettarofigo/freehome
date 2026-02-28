@@ -3,8 +3,7 @@ import mimetypes
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from app.routers import devices, tv, camera, pages
-from app.routers import devices
+from app.routers import devices, tv, camera
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -41,5 +40,4 @@ def serve_angular():
 app.include_router(tv.router)
 app.include_router(devices.router)
 app.include_router(camera.router)
-app.include_router(pages.router)
 app.include_router(devices.router)
