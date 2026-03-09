@@ -37,6 +37,14 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 def serve_angular():
     return FileResponse(os.path.join(BASE_DIR, "static", "angular", "index.html"))
 
+@app.get("/manifest.json")
+def serve_manifest():
+    return FileResponse(os.path.join(BASE_DIR, "static", "manifest.json"))
+
+@app.get("/sw.js")
+def serve_sw():
+    return FileResponse(os.path.join(BASE_DIR, "static", "sw.js"))
+
 app.include_router(tv.router)
 app.include_router(devices.router)
 app.include_router(camera.router)
