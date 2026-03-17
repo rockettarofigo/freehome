@@ -1,0 +1,33 @@
+.cams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.cam-wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cam-wrapper img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #000;
+  margin-bottom: 10px;
+  border: 1px solid rgba(187, 134, 252, 0.3);
+}
+
+.cam-label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+@media (max-width: 500px) {
+  .cams-grid {
+    grid-template-columns: 1fr;
+  }
+}

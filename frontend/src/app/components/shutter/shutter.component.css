@@ -1,0 +1,53 @@
+.shutter-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.shutter-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.shutter-icon {
+  font-size: 32px;
+}
+
+.shutter-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.shutter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.main-actions .btn {
+  flex: 1;
+}
+
+.position-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.position-slider label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+input[type=range] {
+  width: 100%;
+  accent-color: var(--primary-color);
+}

@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h2>TV Control</h2>
+</div>
+
+<div *ngIf="loading" class="loading">Loading TV devices...</div>
+
+<div *ngIf="!loading && tvs.length > 0">
+  <div class="tv-device-info card" *ngFor="let tv of tvs">
+    <h3>{{ tv.name }}</h3>
+    <p>{{ tv.ip }}</p>
+    
+    <div class="grid">
+      <div class="card tv-card" *ngFor="let channel of channels" (click)="setChannel(channel.name)">
+        <span class="tv-icon">{{ channel.icon }}</span>
+        <span class="tv-name">{{ channel.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && tvs.length === 0" class="no-data">
+  No TV devices found.
+</div>

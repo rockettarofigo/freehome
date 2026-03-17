@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h2>Light Control</h2>
+  <button class="btn btn-outline" (click)="loadLights()">Refresh</button>
+</div>
+
+<div *ngIf="loading" class="loading">Loading lights...</div>
+
+<div class="grid" *ngIf="!loading">
+  <div class="card light-card" *ngFor="let light of lights">
+    <div class="light-info">
+      <span class="light-icon" [class.on]="light.status === 'on'">💡</span>
+      <span class="light-name">{{ light.name }}</span>
+    </div>
+    <div class="light-actions">
+      <button 
+        class="btn" 
+        [class.btn-primary]="light.status === 'on'" 
+        [class.btn-outline]="light.status !== 'on'"
+        (click)="toggleLight(light, 'on')">
+        ON
+      </button>
+      <button 
+        class="btn" 
+        [class.btn-secondary]="light.status === 'off'" 
+        [class.btn-outline]="light.status !== 'off'"
+        (click)="toggleLight(light, 'off')">
+        OFF
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && lights.length === 0" class="no-data">
+  No lights found. Go to Settings to add devices.
+</div>

@@ -1,0 +1,110 @@
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: var(--surface-color);
+  padding: 30px 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-bottom: 10px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  background-color: rgba(187, 134, 252, 0.1);
+  color: var(--primary-color);
+}
+
+.nav-links a.active {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.icon {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Mobile styles */
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: var(--surface-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mobile-header .logo {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  width: 34px; /* Matches back-btn size to center logo */
+}
+
+@media (max-width: 991px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+}

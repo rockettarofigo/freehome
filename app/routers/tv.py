@@ -13,9 +13,9 @@ logging.basicConfig(level=logging.INFO)
 
 @router.post("/tv")
 def tv_control(data: Things):
-    logging.info("TV channel: %s", data.channel)
     
-    connection()
+    if data.channel is not None:
+        connection()
     
     if data.channel == "netflix":
         netflix()

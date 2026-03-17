@@ -1,0 +1,16 @@
+<div class="home-container">
+  <header class="home-header">
+    <h1>Free<span>Home</span></h1>
+    <p class="time">{{ currentTime }}</p>
+  </header>
+
+  <div class="home-grid">
+    <div class="menu-card" *ngFor="let item of menuItems" [routerLink]="item.route">
+      <div class="card-icon">{{ item.icon }}</div>
+      <div class="card-content">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

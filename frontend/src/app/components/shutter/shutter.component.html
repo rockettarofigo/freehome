@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h2>Shutter Control</h2>
+  <button class="btn btn-outline" (click)="loadShutters()">Refresh</button>
+</div>
+
+<div *ngIf="loading" class="loading">Loading shutters...</div>
+
+<div class="grid" *ngIf="!loading">
+  <div class="card shutter-card" *ngFor="let shutter of shutters">
+    <div class="shutter-info">
+      <span class="shutter-icon">🪟</span>
+      <span class="shutter-name">{{ shutter.name }}</span>
+    </div>
+    <div class="shutter-controls">
+      <div class="main-actions">
+        <button class="btn btn-primary" (click)="control(shutter, 'open')">UP</button>
+        <button class="btn btn-secondary" (click)="control(shutter, 'stop')">STOP</button>
+        <button class="btn btn-primary" (click)="control(shutter, 'close')">DOWN</button>
+      </div>
+      <div class="position-slider">
+        <label>Position: {{ shutter.position }}%</label>
+        <input type="range" min="0" max="100" [(ngModel)]="shutter.position" (change)="setPosition(shutter, shutter.position)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && shutters.length === 0" class="no-data">
+  No shutters found.
+</div>
