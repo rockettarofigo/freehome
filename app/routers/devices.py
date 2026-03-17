@@ -11,7 +11,7 @@ router = APIRouter()
 ###                                      ###
 
 @router.post("/light")
-def room_control(data: Things):
+def light_control(data: Things):
     logging.info("light: %s, OnOff: %s", data.light, data.onoff)
     ip = getname("light", data.light)
     url = f"http://{ip}/relay/0?turn={data.onoff}"
@@ -53,7 +53,7 @@ def shutter_control(data: Things):
         }
         
 @router.post("/shutterstartstop")
-def shutter_control(data: Things):
+def shutter_position(data: Things):
     logging.info("shutter: %s, startstop: %s", data.shutter, data.startstop)
     ip = getname("shutter",data.shutter)
     url = f"http://{ip}/roller/0?go={data.startstop}"

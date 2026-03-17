@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import devices, tv, camera
+from app.routers import devices, tv, camera, scene
 
 app = FastAPI(title="SmartHome API")
 
@@ -86,3 +86,4 @@ def serve_manifest():
 app.include_router(tv.router)
 app.include_router(devices.router)
 app.include_router(camera.router)
+app.include_router(scene.router)
