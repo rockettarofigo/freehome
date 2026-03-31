@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import devices, tv, camera, scene
+from app.routers import devices, tv, camera, scene, pv
 
 app = FastAPI(title="SmartHome API")
 
@@ -62,6 +62,7 @@ app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 @app.get("/light")
 @app.get("/shutter")
 @app.get("/tv")
+@app.get("/pv")
 @app.get("/cams")
 @app.get("/solar")
 @app.get("/aircon")
@@ -83,6 +84,7 @@ def serve_manifest():
 # -------------------------
 # API routers
 # -------------------------
+app.include_router(pv.router)
 app.include_router(tv.router)
 app.include_router(devices.router)
 app.include_router(camera.router)
