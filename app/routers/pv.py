@@ -5,14 +5,16 @@ import logging
 import ctypes
 
 # Inverter configuration
-IP = "192.168.0.24"
+IP = "192.168.0.10"
 PORT = 502
 DEVICE_ID = 1
 
+
+
 # Modbus registers
 REG_ACTIVE_POWER      = 37113
-REG_DAILY_YIELD       = 32114
-REG_DAILY_IMPORT      = 32118
+REG_DAILY_YIELD       = 32106 #32114
+REG_DAILY_IMPORT      = 32118 
 REG_NUM_PV_STR        = 30071
 REG_BATTERY_SOC_REAL   = 38229
 ALARM_REGISTERS        = [32008, 32009, 32010]
