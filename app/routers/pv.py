@@ -9,12 +9,9 @@ IP = "192.168.0.10"
 PORT = 502
 DEVICE_ID = 1
 
-
-
 # Modbus registers
-REG_ACTIVE_POWER      = 37113
-REG_DAILY_YIELD       = 32106 #32114
-REG_DAILY_IMPORT      = 32118 
+REG_ACTIVE_POWER      = 32080
+REG_DAILY_YIELD       = 32106
 REG_NUM_PV_STR        = 30071
 REG_BATTERY_SOC_REAL   = 38229
 ALARM_REGISTERS        = [32008, 32009, 32010]
@@ -52,7 +49,6 @@ def tv_control(data: PvModel):
     json_string = {
         "active_power": 0,
         "daily_kwh": 0,
-        "daily_import_kwh": 0,
         "num_strings": 0,
         "soc_percent": 0,
         "alarms": []
@@ -76,12 +72,6 @@ def tv_control(data: PvModel):
     if not r2.isError():
         high, low = r2.registers
         json_string["daily_kwh"] = ((high << 16) + low) / 100.0
-
-    # --- Daily energy imported ---
-    r3 = client.read_holding_registers(address=REG_DAILY_IMPORT, count=COUNT_32BIT, device_id=DEVICE_ID)
-    if not r3.isError():
-        high, low = r3.registers
-        json_string["daily_import_kwh"] = ((high << 16) + low) / 100.0
 
     # --- Number of PV strings ---
     r4 = client.read_holding_registers(address=REG_NUM_PV_STR, count=1, device_id=DEVICE_ID)
