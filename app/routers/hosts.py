@@ -93,3 +93,14 @@ def deletedevice(light=None, shutter=None, tv=None):
         return data, "removed"
     else:
         return data, "item not found"
+    
+###                                 ###
+#          Get tv name & ip           #
+###                                 ###
+def gettvname(tv):
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(BASE_DIR, "..", "hosts.json")
+    with open(json_path, "r") as json_file:
+        data = json.load(json_file)
+    return (data['tv'][tv])  
+    

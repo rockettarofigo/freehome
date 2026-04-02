@@ -1,5 +1,11 @@
 {
-  "light": {},
-  "tv": {},
-  "shutter": {}
+  "light": {
+    "office": "192.168.0.3"
+  },
+  "tv": {
+    "Firestick": "192.168.0.5"
+  },
+  "shutter": {
+    "bedroom": "192.168.0.4"
+  }
 }

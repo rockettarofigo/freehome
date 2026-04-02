@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.models import Things
-from app.routers.hosts import getname
+from app.routers.hosts import gettvname
 import logging
 import subprocess
 import time
@@ -14,8 +14,10 @@ logging.basicConfig(level=logging.INFO)
 @router.post("/tv")
 def tv_control(data: Things):
     
+
     if data.channel is not None:
-        connection()
+        connection(data.tv)
+    
     
     if data.channel == "netflix":
         netflix()
@@ -31,10 +33,9 @@ def tv_control(data: Things):
 
 
 
-def connection():
-    ip = getname("tv","firestick")
+def connection(tv):
+    ip = gettvname(tv)
     subprocess.run([ADB_PATH, "connect", f"{ip}:5555"], check=True)
-
 
 def kodi():
     try:

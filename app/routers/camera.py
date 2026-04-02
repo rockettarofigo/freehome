@@ -5,12 +5,14 @@ import threading
 import time
 import numpy as np
 
+
 router = APIRouter()
 
 CAMERAS = {}
 CAMERAS_LOCK = threading.Lock()
 
 def get_difference(first_frame, second_frame):
+
 
     first_gray = cv2.cvtColor(first_frame, cv2.COLOR_BGR2GRAY)
     second_gray = cv2.cvtColor(second_frame, cv2.COLOR_BGR2GRAY)
@@ -37,7 +39,7 @@ def get_difference(first_frame, second_frame):
     annotated_frame = second_frame.copy()
     if max_x > 0 and max_y > 0:
         cv2.rectangle(annotated_frame, (min_x, min_y), (max_x, max_y), (0, 0, 255), 2)
-
+        
     return annotated_frame
 
 def capture_thread(cam_id):
