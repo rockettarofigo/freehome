@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   // Using relative URLs so it works when accessed from any IP/domain
   private apiUrl = ''; 
+//  private apiUrl = 'http://localhost:8000'; 
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,10 @@ export class ApiService {
 
   controlTv(channel: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/tv`, { channel });
+  }
+
+  fetchData(start: string, end: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/pv`, { start,end });
   }
 
   getDevicesList(light?: string, shutter?: string, tv?: string): Observable<any> {

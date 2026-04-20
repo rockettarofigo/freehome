@@ -1,0 +1,100 @@
+/* HEADER */
+.page-header {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* DATE GROUP */
+.date-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+/* INPUT */
+.date-group input {
+  width: 220px;
+  height: 36px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* FOCUS */
+.date-group input:focus {
+  border-color: #4cc9f0;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+.card.solar-card {
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  overflow: hidden;
+}
+
+/* HEADER CARD */
+.solar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* ICON */
+.solar-icon {
+  font-size: 28px;
+}
+
+.solar-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* CANVAS */
+canvas {
+  flex: 1;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 240px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card.solar-card {
+    height: 280px;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+
+  .date-group input {
+    width: 100%;
+  }
+}

@@ -1,9 +1,61 @@
 <div class="page-header">
   <h2>Solar Power</h2>
+
+  <div class="controls">
+    <button class="btn btn-outline" (click)="fetchPv()">
+      Refresh
+    </button>
+
+    <div class="date-group">
+      <input type="datetime-local" [(ngModel)]="startDate" />
+    </div>
+
+    <div class="date-group">
+      <input type="datetime-local" [(ngModel)]="endDate" />
+    </div>
+  </div>
 </div>
 
-<div class="card wip-card">
-  <div class="wip-icon">🚧</div>
-  <h3>Work In Progress</h3>
-  <p>Solar panel monitoring is currently under development. Stay tuned!</p>
+<div *ngIf="loading" class="loading">
+  Loading solar data...
+</div>
+
+<div class="grid" *ngIf="!loading && data.length > 0">
+
+  <div class="card solar-card">
+    <div class="solar-info">
+      <span class="solar-icon">⚡</span>
+      <span class="solar-name">Active Power</span>
+    </div>
+    <canvas id="chart_power"></canvas>
+  </div>
+
+  <div class="card solar-card">
+    <div class="solar-info">
+      <span class="solar-icon">🔋</span>
+      <span class="solar-name">Daily kWh</span>
+    </div>
+    <canvas id="chart_kwh"></canvas>
+  </div>
+
+  <div class="card solar-card">
+    <div class="solar-info">
+      <span class="solar-icon">🔌</span>
+      <span class="solar-name">SOC %</span>
+    </div>
+    <canvas id="chart_soc"></canvas>
+  </div>
+
+  <div class="card solar-card">
+    <div class="solar-info">
+      <span class="solar-icon">☀️</span>
+      <span class="solar-name">Irradiance</span>
+    </div>
+    <canvas id="chart_irradiance"></canvas>
+  </div>
+
+</div>
+
+<div *ngIf="!loading && data.length === 0" class="no-data">
+  No solar data found.
 </div>
