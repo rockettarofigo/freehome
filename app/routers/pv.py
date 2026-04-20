@@ -1,99 +1,175 @@
-from pymodbus.client import ModbusTcpClient
-from fastapi import APIRouter
-from app.models import PvModel
-import logging
-import ctypes
+const grid = document.getElementById("grid");
 
-# Inverter configuration
-IP = "192.168.0.10"
-PORT = 502
-DEVICE_ID = 1
-
-# Modbus registers
-REG_ACTIVE_POWER      = 32080
-REG_DAILY_YIELD       = 32114 
-REG_NUM_PV_STR        = 30071
-REG_BATTERY_SOC_REAL   = 38229
-ALARM_REGISTERS        = [32008, 32009, 32010]
-COUNT_32BIT = 2
-
-# Alarm dictionary based on datasheet
-ALARM_BITS = {
-    32008: {
-        0: "Overvoltage DC",
-        1: "Undervoltage DC",
-        2: "Overtemperature inverter",
-        3: "Inverter fault",
-        4: "AC overcurrent",
-        5: "Fuse fault",
-        6: "Relay fault",
-        7: "Communication fault"
-    },
-    32009: {
-        0: "Ground fault",
-        1: "PV mismatch",
-        2: "Anti-islanding fault"
-    },
-    32010: {
-        0: "Battery fault",
-        1: "Battery overvoltage",
-        2: "Battery undervoltage"
-    }
+/* =========================
+   UTILS
+========================= */
+function clearGrid() {
+    grid.innerHTML = "";
 }
 
-router = APIRouter()
-logging.basicConfig(level=logging.INFO)
+function getLatest(results) {
+    if (!results || results.length === 0) return null;
+    return results[results.length - 1];
+}
 
-@router.post("/pv")
-def tv_control(data: PvModel):
-    json_string = {
-        "active_power": 0,
-        "daily_kwh": 0,
-        "num_strings": 0,
-        "soc_percent": 0,
-        "alarms": []
+/* =========================
+   BUILD DATA
+========================= */
+function buildPvData(record) {
+    return [
+        { label: "active_power", value: record.active_power, unit: "kW" },
+        { label: "daily_kwh", value: record.daily_kwh, unit: "kWh" },
+        { label: "soc_percent", value: record.soc_percent, unit: "%" },
+        { label: "irradiance", value: record.irradiance, unit: "W/m²" }
+    ];
+}
+
+/* =========================
+   CHART GENERICO
+========================= */
+function renderChart(canvasId, labels, values, label) {
+
+    const ctx = document.getElementById(canvasId);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                tension: 0.35,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: { display: false }
+            },
+
+            scales: {
+                x: {
+                    ticks: {
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 8,
+                        maxRotation: 0
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: label === "soc_percent" ? 100 : undefined,
+                    ticks: {
+                        callback: function(value) {
+                            return label === "soc_percent" ? value + "%" : value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+/* =========================
+   RENDER DASHBOARD
+========================= */
+function renderPv(data, results) {
+
+    const labels = results.map(r => {
+        const d = new Date(r.date);
+        return d.toLocaleTimeString("it-IT", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    });
+
+    data.forEach(item => {
+
+        const card = document.createElement("div");
+        card.className = "card wide";
+
+        const canvasId = "chart_" + item.label;
+
+        card.innerHTML = `
+            <div class="left">
+                <div class="label">${item.label}</div>
+                <div class="value">${item.value}</div>
+                <div class="unit">${item.unit}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <canvas id="${canvasId}"></canvas>
+        `;
+
+        grid.appendChild(card);
+
+        // 👉 FIX valori (numeri veri + null safe)
+        const values = results.map(r => {
+            let v = r[item.label];
+
+            if (v === null || v === undefined) return 0;
+
+            return Number(v);
+        });
+
+        // 👉 DEBUG solo SOC
+        if (item.label === "soc_percent") {
+            console.log("SOC VALUES:", values);
+        }
+
+        renderChart(canvasId, labels, values, item.label);
+    });
+}
+
+/* =========================
+   FETCH PV
+========================= */
+async function fetchPvData() {
+
+    const start = document.getElementById("start").value;
+    const end = document.getElementById("end").value;
+
+    if (!start || !end) {
+        alert("Inserisci entrambe le date");
+        return;
     }
 
-    client = ModbusTcpClient(IP, port=PORT)
-    if not client.connect():
-        logging.info("Connection failed")
-        return {"error": "Connection failed", **json_string}
-        
-    # --- Active power ---
-    r = client.read_holding_registers(address=REG_ACTIVE_POWER, count=COUNT_32BIT, device_id=DEVICE_ID)
-    if not r.isError():
-        high, low = r.registers
-        raw = (high << 16) + low
-        signed_raw = ctypes.c_int32(raw).value
-        json_string["active_power"] = signed_raw / 1000.0
+    try {
+        clearGrid();
 
-    # --- Daily energy produced ---
-    r2 = client.read_holding_registers(address=REG_DAILY_YIELD, count=COUNT_32BIT, device_id=DEVICE_ID)
-    if not r2.isError():
-        high, low = r2.registers
-        json_string["daily_kwh"] = ((high << 16) + low) / 100.0
+        const pvRes = await fetch('http://192.168.0.8:8001/pull/fetch/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                start: start.replace("T", " ") + ":00",
+                end: end.replace("T", " ") + ":00"
+            })
+        });
 
-    # --- Number of PV strings ---
-    r4 = client.read_holding_registers(address=REG_NUM_PV_STR, count=1, device_id=DEVICE_ID)
-    if not r4.isError():
-        json_string["num_strings"] = r4.registers[0]
+        const pvJson = await pvRes.json();
 
-    # --- Battery real SOC ---
-    r5 = client.read_holding_registers(address=REG_BATTERY_SOC_REAL, count=1, device_id=DEVICE_ID)
-    if not r5.isError():
-        json_string["soc_percent"] = r5.registers[0] / 10.0
+        if (!pvRes.ok) {
+            alert("Errore backend PV");
+            return;
+        }
 
-    # --- Alarms ---
-    alarms = []
-    for addr in ALARM_REGISTERS:
-        r_alarm = client.read_holding_registers(address=addr, count=1, device_id=DEVICE_ID)
-        if not r_alarm.isError():
-            val = r_alarm.registers[0]
-            for bit in range(16):
-                if val & (1 << bit):
-                    msg = ALARM_BITS.get(addr, {}).get(bit, f"Unknown alarm bit {bit}")
-                    alarms.append(msg)
-    json_string["alarms"] = alarms
+        const latest = getLatest(pvJson.results);
 
-    client.close()
-    return json_string
+        if (!latest) {
+            alert("Nessun dato disponibile");
+            return;
+        }
+
+        const pvData = buildPvData(latest);
+
+        renderPv(pvData, pvJson.results);
+
+    } catch (err) {
+        console.error(err);
+        alert("Errore rete / CORS");
+    }
+}

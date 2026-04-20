@@ -11,6 +11,8 @@ class Things(BaseModel):
     channel: Optional[str] = None
     tv: Optional[str] = None
     startstop: Optional[str] = None
+    start: Optional[str] = None
+    end: Optional[str] = None
 
 class PvModel(BaseModel):
     reg_active_power: Optional[int] = None
